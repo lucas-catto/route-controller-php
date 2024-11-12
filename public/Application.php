@@ -6,15 +6,30 @@ class Application
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        // delete '/' of /page
-        $uri = substr($uri, 1);
+        /*
+         * HomeController will be responsable 
+         * for '/' route, so if $uri is '/', 
+         * the value of $uri will be 'Home'.
+        */
+        if ($uri == '/') {
+            $uri = 'Home';
 
-        // all letters to lower case
-        $uri = strtolower($uri);
+        /* 
+         * if $uri isn't '/', the code 
+         * will continue to validate 
+         * a possible other controller. 
+         */
+        } else {
+            // delete '/' of /page
+            $uri = substr($uri, 1);
 
-        // first letter to upper case
-        $uri = ucfirst($uri);
-        
+            // all letters to lower case
+            $uri = strtolower($uri);
+
+            // first letter to upper case
+            $uri = ucfirst($uri);
+        }
+
         // if uri is Home, it'll be HomeController
         $controller = $uri.'Controller';
 
