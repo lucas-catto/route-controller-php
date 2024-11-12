@@ -58,7 +58,33 @@ class Application
          * if we got here, it's because the controller doesn't exists.
          */
         } else {
-            echo 'false';
-        }
+            // this line has the path of 404 user file.
+            $path_of_file_of_404 = '../Views/errors/404.php';
+
+            /*
+             * here we'll validate if 
+             * the user of this code 
+             * has create his own 404 file. 
+             * if not, it'll get the default path.
+             */
+            if (!file_exists($path_of_file_of_404)) {
+                $path_of_file_of_404 = '../Views/default_files/errors/404.php';
+            }
+            
+            // validate if the default file exist.
+            if (!file_exists($path_of_file_of_404)) {
+                /*
+                 * if the default file doesn't 
+                 * exists, a die() with a 
+                 * message will be executed. 
+                 */
+                die('<h1>Default file not found!</h1>');
+            }
+
+            /*
+             * if user file exists or the default file, it'll be load. 
+             */
+            require_once $path_of_file_of_404;
+        } 
     }
 }
