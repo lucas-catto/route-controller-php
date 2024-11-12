@@ -26,7 +26,7 @@ class Application
          * path to verify if it exists.
          * Example: Controllers/HomeController.php
          */
-        $controller_path = 'Controllers/'.$controller_file;
+        $controller_path = '../Controllers/'.$controller_file;
 
         // verify if controller exists.
         if (file_exists($controller_path)) {
