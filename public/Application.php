@@ -7,6 +7,16 @@ class Application
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
         /*
+        $uri =  explode('/', $uri);
+
+        foreach ($uri as $key => $value) {
+            echo "<p>{$value}</p>";
+        }
+
+        die();
+        */
+
+        /*
          * HomeController will be responsable 
          * for '/' route, so if $uri is '/', 
          * the value of $uri will be 'Home'.
@@ -20,8 +30,11 @@ class Application
          * a possible other controller. 
          */
         } else {
-            // delete '/' of /page
-            $uri = substr($uri, 1);
+            // here we'll separate url, like /abc/def/ghi in an array.
+            $uri = explode('/', $uri);
+            
+            // here we got the first position, that must be the controller.
+            $uri = $uri[1];
 
             // all letters to lower case
             $uri = strtolower($uri);
